@@ -6,6 +6,7 @@ const chatSchema = new Schema(
       type: String,
       required: true,
       trim: true,
+      default: "New Chat",
     },
   },
   {
