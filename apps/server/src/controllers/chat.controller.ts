@@ -19,7 +19,7 @@ export async function getChats(req: Request, res: Response) {
 }
 
 export async function deleteChat(req: Request, res: Response) {
-  const { chatId } = req.params;
+  const { chatId } = req.params as { chatId: string };
 
   const chat = await Chat.findByIdAndDelete(chatId);
 
