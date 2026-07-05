@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc"
+  },
+  "packageManager": "pnpm@10.30.3",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@river/shared": "workspace:*",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.7.3"
+  }
+}

@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+.pnpm-store/ 
+
+# Builds and Outputs
+dist/
+
+# Logs
+pnpm-debug.log*
+
+# Local Env Files
+.env*
+!.env.example
+
+# Testing cache
+.turbo/
+.eslintcache
+.cache/
+
+# System Files
+.DS_Store
+Thumbs.db
