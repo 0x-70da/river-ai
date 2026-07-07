@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Chat } from "../models/chat.model.js";
 import { Message } from "../models/message.model.js";
+import { sendMessage } from "../services/ai.service.js";
 
 export async function getChat(req: Request, res: Response) {
   const { chatId } = req.params as { chatId: string };
@@ -29,19 +30,13 @@ export async function createMessage(req: Request, res: Response) {
   const { chatId } = req.params as { chatId: string };
   const { content } = req.body as { content: string };
 
-  const chat = await Chat.findById(chatId);
-
-  if (!chat) {
-    return res.status(404).json({
-      message: "Chat not found",
+  if (!content?.trim()) {
+    return res.status(400).json({
+      message: "Message content is required",
     });
   }
 
-  const message = await Message.create({
-    chatId,
-    role: "user",
-    content,
-  });
+  const assistantMessage = await sendMessage(chatId, content);
 
-  return res.status(201).json(message);
+  return res.status(201).json(assistantMessage);
 }
