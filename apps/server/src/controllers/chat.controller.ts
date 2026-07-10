@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
 import { Chat } from "../models/chat.model.js";
 import { Message } from "../models/message.model.js";
+import { success } from "../utils/response.js";
 
 export async function createChat(req: Request, res: Response) {
   const chat = await Chat.create({
     title: "New Chat",
   });
 
-  res.status(201).json(chat);
+  return success(res, chat, 201);
 }
 
 export async function getChats(req: Request, res: Response) {
@@ -15,7 +16,7 @@ export async function getChats(req: Request, res: Response) {
     updatedAt: -1,
   });
 
-  res.json(chats ?? []);
+  return success(res, chats);
 }
 
 export async function deleteChat(req: Request, res: Response) {
@@ -24,10 +25,10 @@ export async function deleteChat(req: Request, res: Response) {
   const chat = await Chat.findByIdAndDelete(chatId);
 
   if (!chat) {
-    return res.status(404).json({ message: "Chat not found" });
+    return success(res, { message: "Chat not found" }, 404);
   }
 
   await Message.deleteMany({ chatId });
 
-  res.status(204).json({ message: "Chat deleted successfully" });
+  return res.sendStatus(204);
 }

@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { Chat } from "../models/chat.model.js";
 import { Message } from "../models/message.model.js";
 import { sendMessage } from "../services/ai.service.js";
+import { error, success } from "../utils/response.js";
 
 export async function getChat(req: Request, res: Response) {
   const { chatId } = req.params as { chatId: string };
@@ -9,9 +10,7 @@ export async function getChat(req: Request, res: Response) {
   const chat = await Chat.findById(chatId);
 
   if (!chat) {
-    return res.status(404).json({
-      message: "Chat not found",
-    });
+    return error(res, "Chat not found", 404);
   }
 
   const messages = await Message.find({
@@ -20,7 +19,7 @@ export async function getChat(req: Request, res: Response) {
     createdAt: 1,
   });
 
-  return res.json({
+  return success(res, {
     ...chat.toObject(),
     messages,
   });
@@ -31,12 +30,10 @@ export async function createMessage(req: Request, res: Response) {
   const { content } = req.body as { content: string };
 
   if (!content?.trim()) {
-    return res.status(400).json({
-      message: "Message content is required",
-    });
+    return error(res, "Message content is required", 400);
   }
 
   const assistantMessage = await sendMessage(chatId, content);
 
-  return res.status(201).json(assistantMessage);
+  return success(res, assistantMessage, 201);
 }
