@@ -9,12 +9,14 @@
   },
   "packageManager": "pnpm@10.30.3",
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "tsx": "^4.23.0",
     "typescript": "^6.0.3"
   },
   "dependencies": {
     "@river/shared": "workspace:*",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "groq-sdk": "^1.3.0",
