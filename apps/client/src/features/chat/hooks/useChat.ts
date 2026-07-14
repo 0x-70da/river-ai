@@ -1,6 +1,12 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { createChat, deleteChat, getChat, getChats } from "../chat.api";
+import {
+  createChat,
+  deleteChat,
+  getChat,
+  getChats,
+  updateChatTitle,
+} from "../chat.api";
 import { useNavigate } from "react-router";
 import { queryClient } from "@/query-client";
 
@@ -52,6 +58,20 @@ export function useChat(chatId?: string) {
     },
   });
 
+  const {
+    mutate: updateChatTitleMutation,
+    isPending: isUpdatingChatTitle,
+    isError: isUpdateChatTitleError,
+  } = useMutation({
+    mutationFn: ({ chatId, title }: { chatId: string; title: string }) =>
+      updateChatTitle({ chatId, title }),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["chats"] });
+      queryClient.invalidateQueries({ queryKey: ["chat", chatId] });
+    },
+  });
+
   return {
     chats,
     areChatsLoading,
@@ -65,5 +85,8 @@ export function useChat(chatId?: string) {
     deleteChatMutation,
     isDeletingChat,
     isDeleteChatError,
+    updateChatTitleMutation,
+    isUpdatingChatTitle,
+    isUpdateChatTitleError,
   };
 }
