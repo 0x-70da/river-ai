@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown";
 
-import type { MessageRole } from "@river/shared";
+import type { MessageRole } from "@river/types";
 
 interface MessageBubbleProps {
   role: MessageRole;

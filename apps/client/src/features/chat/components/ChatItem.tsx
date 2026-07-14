@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router";
 
-import type { Chat } from "@river/shared";
+import type { Chat } from "@river/types";
 
 interface ChatItemProps {
   chat: Chat;

@@ -1,4 +1,4 @@
-import type { Message } from "@river/shared";
+import type { Message } from "@river/types";
 
 import { MessageBubble } from "./MessageBubble";
 

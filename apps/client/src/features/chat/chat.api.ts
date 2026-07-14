@@ -1,6 +1,6 @@
 import { api } from "@/utils/api";
 
-import type { ApiResponse, Chat, ChatDetails, Message } from "@river/shared";
+import type { ApiResponse, Chat, ChatDetails, Message } from "@river/types";
 
 export async function getChats() {
   const response = await api.get<ApiResponse<Chat[]>>("/chats");

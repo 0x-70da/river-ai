@@ -1,4 +1,4 @@
-import type { ChatDetails } from "@river/shared";
+import type { ChatDetails } from "@river/types";
 
 import { ChatMessages } from "./ChatMessages";
 import { PromptInput } from "./PromptInput";

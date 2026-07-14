@@ -1,4 +1,4 @@
-import type { Chat } from "@river/shared";
+import type { Chat } from "@river/types";
 import { ChatItem } from "./ChatItem";
 
 interface ChatListProps {
