@@ -6,9 +6,19 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
+    
     "test": "turbo test",
     "test:run": "turbo test:run",
-    "test:coverage": "turbo test:coverage"
+    "test:coverage": "turbo test:coverage",
+
+    "docker:up": "docker compose -f docker-compose.dev.yml up",
+    "docker:build": "docker compose -f docker-compose.dev.yml up --build",
+    "docker:down": "docker compose -f docker-compose.dev.yml down",
+
+    "docker:logs": "docker compose -f docker-compose.dev.yml logs -f",
+    "docker:ps": "docker compose -f docker-compose.dev.yml ps",
+
+    "docker:restart": "pnpm docker:down && pnpm docker:build"
   },
   "keywords": [
     "ai",
