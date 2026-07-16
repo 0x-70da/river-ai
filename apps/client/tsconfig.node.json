@@ -1,0 +1,13 @@
+{
+  "extends": "@river/config/typescript/node",
+
+  "compilerOptions": {
+    "noEmit": true
+  },
+
+  "include": [
+    "vite.config.ts",
+    "vitest.config.ts",
+    "playwright.config.ts"
+  ]
+}

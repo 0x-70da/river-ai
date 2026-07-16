@@ -1,13 +1,12 @@
 {
-  "extends": "@river/config/typescript/react",
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    },
+  "files": [],
 
-    "outDir": "dist",
-    "rootDir": "src"
-  },
-  "include": ["src", "vite.config.ts"],
-  "exclude": ["node_modules", "dist"]
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }
