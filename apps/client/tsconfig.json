@@ -1,7 +1,5 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "extends": "@river/config/typescript/react",
+  "include": ["src", "vite.config.ts"],
+  "exclude": ["node_modules", "dist"]
 }

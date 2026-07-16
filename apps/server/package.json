@@ -9,6 +9,7 @@
   },
   "packageManager": "pnpm@10.30.3",
   "devDependencies": {
+    "@river/config": "workspace:*",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "tsx": "^4.23.0",

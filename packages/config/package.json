@@ -1,0 +1,11 @@
+{
+  "name": "@river/config",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    "./typescript/*": "./typescript/*.json",
+    "./eslint/*": "./eslint/*.js",
+    "./prettier": "./prettier/prettier.config.js"
+  }
+}
