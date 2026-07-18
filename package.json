@@ -6,14 +6,25 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
+
+    "lint": "turbo lint",
+    "lint:fix": "turbo lint -- --fix",
+
+    "typecheck": "turbo typecheck",
+    "clean": "turbo clean",
+
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
     
     "test": "turbo test",
     "test:run": "turbo test:run",
     "test:coverage": "turbo test:coverage",
 
-    "docker:up": "docker compose -f docker-compose.dev.yml up",
-    "docker:build": "docker compose -f docker-compose.dev.yml up --build",
-    "docker:down": "docker compose -f docker-compose.dev.yml down",
+    "docker:dev": "docker compose -f docker-compose.dev.yml up --build",
+    "docker:dev:down": "docker compose -f docker-compose.dev.yml down",
+
+    "docker:prod": "docker compose -f docker-compose.prod.yml up --build -d",
+    "docker:prod:down": "docker compose -f docker-compose.prod.yml down",
 
     "docker:logs": "docker compose -f docker-compose.dev.yml logs -f",
     "docker:ps": "docker compose -f docker-compose.dev.yml ps",

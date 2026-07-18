@@ -26,11 +26,13 @@ services:
 
     working_dir: /app/apps/server
 
+    user: "${UID}:${GID}"
+
     ports:
       - "3000:3000"
 
     env_file:
-      - ./apps/server/.env
+      - ./docker/server/.env.dev
 
     volumes:
       - .:/app
@@ -49,6 +51,8 @@ services:
       - server
 
     working_dir: /app/apps/client
+
+    user: "${UID}:${GID}"
 
     ports:
       - "5173:5173"

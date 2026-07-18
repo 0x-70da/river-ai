@@ -8,6 +8,8 @@
   "scripts": {
     "build": "tsc",
     "test": "vitest",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage"
   },
