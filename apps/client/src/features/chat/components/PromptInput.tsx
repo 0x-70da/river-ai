@@ -6,10 +6,7 @@ interface PromptInputProps {
   sendMessageMutation: (content: string) => void;
 }
 
-export function PromptInput({
-  isSendingMessage,
-  sendMessageMutation,
-}: PromptInputProps) {
+export function PromptInput({ isSendingMessage, sendMessageMutation }: PromptInputProps) {
   const [value, setValue] = useState("");
 
   function handleSubmit() {

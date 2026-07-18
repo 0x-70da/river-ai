@@ -2,24 +2,18 @@ import type { Chat } from "@river/types";
 import { ChatItem } from "./ChatItem";
 
 interface ChatListProps {
-  chats?: Chat[];
+  chats?: Chat[] | undefined;
   isChatLoading: boolean;
   isChatError: boolean;
 }
 
-export function ChatList({
-  chats = [],
-  isChatLoading,
-  isChatError,
-}: ChatListProps) {
+export function ChatList({ chats = [], isChatLoading, isChatError }: ChatListProps) {
   if (isChatLoading) {
     return <div className="p-4 text-sm text-zinc-500">Loading...</div>;
   }
 
   if (isChatError) {
-    return (
-      <div className="p-4 text-sm text-red-500">Failed to load chats.</div>
-    );
+    return <div className="p-4 text-sm text-red-500">Failed to load chats.</div>;
   }
 
   if (chats.length === 0) {

@@ -2,7 +2,7 @@ import { ErrorRequestHandler } from "express";
 import mongoose from "mongoose";
 import { error } from "../utils/response.js";
 
-export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+export const errorHandler: ErrorRequestHandler = (err, req, res) => {
   console.error(err);
 
   // Mongoose Validation Error

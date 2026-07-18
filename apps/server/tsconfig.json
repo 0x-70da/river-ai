@@ -1,13 +1,13 @@
 {
-  "files": [],
-
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
+  "extends": "@river/config/typescript/node",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
     },
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
-}
 
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

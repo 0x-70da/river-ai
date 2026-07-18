@@ -28,16 +28,12 @@
 
     "test:run": {
       "dependsOn": ["^test:run"],
-      "outputs": [
-        "coverage/**"
-      ]
+      "outputs": ["coverage/**"]
     },
 
     "test:coverage": {
       "dependsOn": ["^test:coverage"],
-      "outputs": [
-        "coverage/**"
-      ]
+      "outputs": ["coverage/**"]
     }
   }
 }

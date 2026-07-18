@@ -1,12 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import {
-  createChat,
-  deleteChat,
-  getChat,
-  getChats,
-  updateChatTitle,
-} from "../chat.api";
+import { createChat, deleteChat, getChat, getChats, updateChatTitle } from "../chat.api";
 import { useNavigate } from "react-router";
 import { queryClient } from "@/query-client";
 

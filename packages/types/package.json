@@ -13,5 +13,8 @@
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage"
   },
+  "devDependencies": {
+    "@river/config": "workspace:*"
+  },
   "packageManager": "pnpm@10.30.3"
 }

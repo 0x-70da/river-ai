@@ -20,11 +20,7 @@ export function Sidebar() {
       </div>
 
       <div className="flex-1 overflow-y-auto">
-        <ChatList
-          chats={chats}
-          isChatLoading={isChatLoading}
-          isChatError={isChatError}
-        />
+        <ChatList chats={chats} isChatLoading={isChatLoading} isChatError={isChatError} />
       </div>
     </aside>
   );

@@ -5,8 +5,5 @@
     "noEmit": true
   },
 
-  "include": [
-    "vite.config.ts",
-    "vitest.config.ts"
-  ]
+  "include": ["vite.config.ts", "vitest.config.ts"]
 }

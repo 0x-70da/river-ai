@@ -79,8 +79,7 @@ export async function sendMessage(chatId: string, content: string) {
       messages: [
         {
           role: "system",
-          content:
-            "Generate a short chat title (maximum 5 words). Return only the title.",
+          content: "Generate a short chat title (maximum 5 words). Return only the title.",
         },
         {
           role: "user",

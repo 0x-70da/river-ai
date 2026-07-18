@@ -33,12 +33,9 @@ export async function createChat() {
 }
 
 export async function sendMessage(chatId: string, content: string) {
-  const response = await api.post<ApiResponse<Message>>(
-    `/chats/${chatId}/messages`,
-    {
-      content,
-    },
-  );
+  const response = await api.post<ApiResponse<Message>>(`/chats/${chatId}/messages`, {
+    content,
+  });
 
   if (!response.data.success) {
     throw new Error(response.data.message);
@@ -54,19 +51,10 @@ export async function deleteChat(chatId: string) {
   }
 }
 
-export async function updateChatTitle({
-  chatId,
-  title,
-}: {
-  chatId: string;
-  title: string;
-}) {
-  const response = await api.patch<ApiResponse<Pick<Chat, "title">>>(
-    `/chats/${chatId}/title`,
-    {
-      title,
-    },
-  );
+export async function updateChatTitle({ chatId, title }: { chatId: string; title: string }) {
+  const response = await api.patch<ApiResponse<Pick<Chat, "title">>>(`/chats/${chatId}/title`, {
+    title,
+  });
 
   if (!response.data.success) {
     throw new Error(response.data.message);

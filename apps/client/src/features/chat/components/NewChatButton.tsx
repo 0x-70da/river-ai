@@ -25,11 +25,7 @@ export function NewChatButton() {
         disabled:opacity-50
       "
     >
-      {isChatLoading ? (
-        <Loader2 className="size-4 animate-spin" />
-      ) : (
-        <Plus className="size-4" />
-      )}
+      {isChatLoading ? <Loader2 className="size-4 animate-spin" /> : <Plus className="size-4" />}
 
       <span>New Chat</span>
     </button>
