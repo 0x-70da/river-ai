@@ -27,7 +27,7 @@ services:
       - "3000:3000"
 
     env_file:
-      - ./apps/server/.env.prod
+      - ./docker/.env.prod
 
   client:
     build:

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 
-import { AppLayout } from "./AppLayout";
+import { App } from "./App";
 
 import { EmptyState } from "./EmptyState";
 
@@ -10,7 +10,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
 
-    element: <AppLayout />,
+    element: <App />,
 
     children: [
       {

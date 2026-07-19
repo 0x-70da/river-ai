@@ -8,6 +8,7 @@ import { RouterProvider } from "react-router";
 import { queryClient } from "./query-client";
 import { router } from "./router";
 
+import "@river/ui/globals.css";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
