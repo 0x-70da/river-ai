@@ -1,52 +1,27 @@
-import { Plus } from "lucide-react";
+import { ChatList } from "@/features/chat/components/ChatList";
+import { NewChatButton } from "@/features/chat/components/NewChatButton";
+import { useChat } from "@/features/chat/hooks/useChat";
 
-export function Sidebar(){
+export function Sidebar() {
+  const { chats, isChatLoading, isChatError } = useChat();
 
-    return(
+  return (
+    <aside
+      className="
+        flex
+        h-screen
+        w-72
+        flex-col
+        border-r
+      "
+    >
+      <div className="border-b p-4">
+        <NewChatButton />
+      </div>
 
-        <aside
-            className="
-                w-72
-                border-r
-                flex
-                flex-col
-            "
-        >
-
-            <div className="p-4">
-
-                <button
-                    className="
-                        flex
-                        w-full
-                        items-center
-                        justify-center
-                        gap-2
-                        rounded-lg
-                        border
-                        p-3
-                    "
-                >
-
-                    <Plus size={18}/>
-
-                    New Chat
-
-                </button>
-
-            </div>
-
-            <div
-                className="
-                    flex-1
-                    overflow-y-auto
-                "
-            >
-
-            </div>
-
-        </aside>
-
-    );
-
+      <div className="flex-1 overflow-y-auto">
+        <ChatList chats={chats} isChatLoading={isChatLoading} isChatError={isChatError} />
+      </div>
+    </aside>
+  );
 }

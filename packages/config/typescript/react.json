@@ -1,0 +1,19 @@
+{
+  "extends": "./base.json",
+
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+
+    "jsx": "react-jsx",
+
+    "lib": ["DOM", "DOM.Iterable", "ES2023"],
+
+    "types": ["vite/client"],
+    "allowArbitraryExtensions": true,
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true
+  }
+}

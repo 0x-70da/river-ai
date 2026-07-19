@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  mongodb:
+    image: mongo:8
+
+    container_name: river-mongodb
+
+    restart: unless-stopped
+
+    volumes:
+      - mongodb_data:/data/db
+
+  server:
+    build:
+      context: .
+      dockerfile: docker/server/Dockerfile.prod
+
+    container_name: river-server
+
+    restart: unless-stopped
+
+    depends_on:
+      - mongodb
+
+    ports:
+      - "3000:3000"
+
+    env_file:
+      - ./docker/.env.prod
+
+  client:
+    build:
+      context: .
+      dockerfile: docker/client/Dockerfile.prod
+
+    container_name: river-client
+
+    restart: unless-stopped
+
+    depends_on:
+      - server
+
+    ports:
+      - "80:80"
+
+volumes:
+  mongodb_data:

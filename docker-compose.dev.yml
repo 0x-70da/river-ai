@@ -1,0 +1,70 @@
+version: "3.9"
+
+services:
+  mongodb:
+    image: mongo:8
+
+    container_name: river-mongodb
+
+    restart: unless-stopped
+
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongodb_data:/data/db
+
+  server:
+    build:
+      context: .
+      dockerfile: docker/server/Dockerfile.dev
+
+    container_name: river-server
+
+    depends_on:
+      - mongodb
+
+    working_dir: /app/apps/server
+
+    user: "${UID}:${GID}"
+
+    ports:
+      - "3000:3000"
+
+    env_file:
+      - ./docker/.env.dev
+
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+    command: pnpm dev
+
+  client:
+    build:
+      context: .
+      dockerfile: docker/client/Dockerfile.dev
+
+    container_name: river-client
+
+    depends_on:
+      - server
+
+    working_dir: /app/apps/client
+
+    user: "${UID}:${GID}"
+
+    ports:
+      - "5173:5173"
+
+    env_file:
+      - ./docker/.env.dev
+
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+    command: pnpm dev --host
+
+volumes:
+  mongodb_data:

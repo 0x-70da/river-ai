@@ -1,11 +1,15 @@
-import "./App.css";
+import { Outlet } from "react-router";
 
-function App() {
+import { Sidebar } from "@/components/Sidebar";
+
+export function App() {
   return (
-    <>
-      <h1>Hello</h1>
-    </>
+    <div className="flex h-screen">
+      <Sidebar />
+
+      <main className="flex-1">
+        <Outlet />
+      </main>
+    </div>
   );
 }
-
-export default App;

@@ -1,0 +1,14 @@
+{
+  "extends": "./base.json",
+
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+
+    "declaration": true,
+
+    "declarationMap": true,
+
+    "composite": true
+  }
+}

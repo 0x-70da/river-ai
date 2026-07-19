@@ -1,0 +1,45 @@
+FROM node:24-alpine AS builder
+
+WORKDIR /app
+
+RUN corepack enable
+
+COPY package.json .
+COPY pnpm-lock.yaml .
+COPY pnpm-workspace.yaml .
+COPY turbo.json .
+
+COPY apps/server/package.json ./apps/server/
+COPY packages/types/package.json ./packages/types/
+COPY packages/config/package.json ./packages/config/
+
+RUN pnpm install --frozen-lockfile
+
+COPY . .
+
+RUN pnpm --filter server build
+
+
+
+FROM node:24-alpine
+
+WORKDIR /app
+
+RUN corepack enable && corepack prepare pnpm@10.30.3 --activate
+
+COPY package.json .
+COPY pnpm-lock.yaml .
+COPY pnpm-workspace.yaml .
+
+COPY apps/server/package.json ./apps/server/
+COPY packages/types/package.json ./packages/types/
+
+RUN pnpm install --prod --frozen-lockfile
+
+COPY --from=builder /app/apps/server/dist ./apps/server/dist
+
+WORKDIR /app/apps/server
+
+EXPOSE 3000
+
+CMD ["pnpm", "start"]

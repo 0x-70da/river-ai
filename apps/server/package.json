@@ -5,16 +5,24 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc"
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "packageManager": "pnpm@10.30.3",
   "devDependencies": {
+    "@river/config": "workspace:*",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
-    "tsx": "^4.23.0",
-    "typescript": "^6.0.3"
+    "tsx": "^4.23.0"
   },
   "dependencies": {
-    "@river/shared": "workspace:*",
+    "@river/types": "workspace:*",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "groq-sdk": "^1.3.0",

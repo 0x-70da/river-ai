@@ -1,13 +1,39 @@
 {
   "$schema": "https://turbo.build/schema.json",
+
   "tasks": {
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
-    "dev": {
+
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    },
+
+    "test": {
+      "dependsOn": ["^test"],
       "cache": false,
       "persistent": true
+    },
+
+    "test:run": {
+      "dependsOn": ["^test:run"],
+      "outputs": ["coverage/**"]
+    },
+
+    "test:coverage": {
+      "dependsOn": ["^test:coverage"],
+      "outputs": ["coverage/**"]
     }
   }
 }
