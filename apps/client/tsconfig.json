@@ -3,7 +3,8 @@
     "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@river/ui/*": ["../../packages/ui/src/*"]
     }
   },
   "files": [],

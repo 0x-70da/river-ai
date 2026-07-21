@@ -3,18 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "files": [
-    "dist"
-  ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
     },
     "./globals.css": "./src/globals.css"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
@@ -30,6 +26,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.24.0",
+    "radix-ui": "^1.6.4",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
