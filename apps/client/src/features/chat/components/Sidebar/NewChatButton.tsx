@@ -1,6 +1,5 @@
 import { Loader2, Plus } from "lucide-react";
-
-import { useChat } from "../hooks/useChat";
+import { useChat } from "../../hooks/useChat";
 
 export function NewChatButton() {
   const { createChatMutation, isChatLoading } = useChat();

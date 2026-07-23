@@ -1,5 +1,5 @@
 import type { Chat } from "@river/types";
-import { ChatItem } from "./ChatItem";
+import { ChatItem } from "./ChatItem/ChatItem";
 
 interface ChatListProps {
   chats?: Chat[] | undefined;

@@ -1,7 +1,7 @@
 import type { ChatDetails } from "@river/types";
 
 import { ChatMessages } from "./ChatMessages";
-import { PromptInput } from "./PromptInput";
+import { PromptInput } from "../Input/PromptInput";
 
 interface ChatAreaProps {
   chat?: ChatDetails | undefined;
