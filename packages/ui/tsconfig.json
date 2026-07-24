@@ -7,7 +7,7 @@
     "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
-      "@ui/*": ["./src/*"]
+      "@river/ui/*": ["./src/*"]
     }
   },
 
