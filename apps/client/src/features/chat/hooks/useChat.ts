@@ -21,6 +21,7 @@ export function useChat(chatId?: string) {
     data: chat,
     isLoading: isChatLoading,
     isError: isChatError,
+    refetch: refetchChat,
   } = useQuery({
     queryKey: ["chat", chatId],
     queryFn: () => getChat(chatId!),
@@ -74,6 +75,7 @@ export function useChat(chatId?: string) {
     chat,
     isChatLoading,
     isChatError,
+    refetchChat,
     createChatMutation,
     isCreatingChat,
     isCreateChatError,
