@@ -1,13 +1,8 @@
-import type { Chat } from "@river/types";
 import { ChatItem } from "./ChatItem/ChatItem";
+import { useChat } from "../../hooks/useChat";
 
-interface ChatListProps {
-  chats?: Chat[] | undefined;
-  isChatLoading: boolean;
-  isChatError: boolean;
-}
-
-export function ChatList({ chats = [], isChatLoading, isChatError }: ChatListProps) {
+export function ChatList() {
+  const { chats = [], isChatLoading, isChatError } = useChat();
   if (isChatLoading) {
     return <div className="p-4 text-sm text-zinc-500">Loading...</div>;
   }

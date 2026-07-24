@@ -49,6 +49,7 @@ export function useChat(chatId?: string) {
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["chats"] });
+      navigate("/");
     },
   });
 

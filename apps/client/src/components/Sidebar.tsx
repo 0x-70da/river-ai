@@ -1,10 +1,7 @@
-import { ChatList } from "@/features/chat/components/ChatList";
-import { NewChatButton } from "@/features/chat/components/NewChatButton";
-import { useChat } from "@/features/chat/hooks/useChat";
+import { ChatList } from "@/features/chat/components/Sidebar/ChatList";
+import { NewChatButton } from "@/features/chat/components/Sidebar/NewChatButton";
 
 export function Sidebar() {
-  const { chats, isChatLoading, isChatError } = useChat();
-
   return (
     <aside
       className="
@@ -20,7 +17,7 @@ export function Sidebar() {
       </div>
 
       <div className="flex-1 overflow-y-auto">
-        <ChatList chats={chats} isChatLoading={isChatLoading} isChatError={isChatError} />
+        <ChatList />
       </div>
     </aside>
   );

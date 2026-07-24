@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import { useChat } from "./hooks/useChat";
 import { useMessage } from "./hooks/useMessage";
-import { ChatArea } from "./components/ChatArea";
+import { ChatArea } from "./components/Conversation/ChatArea";
 
 export function ChatPage() {
   const { chatId } = useParams();
