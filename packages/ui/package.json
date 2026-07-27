@@ -8,7 +8,9 @@
       "import": "./src/index.ts",
       "default": "./src/index.ts"
     },
-    "./globals.css": "./src/globals.css"
+    "./globals.css": "./src/globals.css",
+    "./lib/utils": "./src/lib/utils.ts",
+    "./components/ui/*": "./src/components/ui/*.tsx"
   },
   "scripts": {
     "lint": "eslint .",
