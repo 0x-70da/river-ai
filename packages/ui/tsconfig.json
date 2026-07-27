@@ -4,11 +4,9 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "ignoreDeprecations": "6.0",
-    "baseUrl": ".",
     "paths": {
+      "*": ["./*"],
       "@/*": ["./src/*"],
-      "@river/ui": ["./src/index.ts"],
       "@river/ui/*": ["./src/*"]
     }
   },

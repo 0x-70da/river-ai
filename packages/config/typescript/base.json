@@ -6,8 +6,6 @@
 
     "noUncheckedIndexedAccess": true,
 
-    "exactOptionalPropertyTypes": true,
-
     "noImplicitOverride": true,
 
     "noFallthroughCasesInSwitch": true,

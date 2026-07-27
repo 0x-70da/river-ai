@@ -3,18 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "files": [
-    "dist"
-  ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
     },
-    "./globals.css": "./src/globals.css"
+    "./globals.css": "./src/globals.css",
+    "./lib/utils": "./src/lib/utils.ts",
+    "./components/ui/*": "./src/components/ui/*.tsx"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
@@ -26,16 +24,16 @@
     "react-dom": "^19"
   },
   "dependencies": {
-    "@radix-ui/react-slot": "^1.3.0",
+    "@base-ui/react": "1.6.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^1.24.0",
+    "lucide-react": "^1.26.0",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@river/config": "workspace:*",
     "@river/types": "workspace:*",
-    "@types/react": "^19",
-    "@types/react-dom": "^19"
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3"
   }
 }

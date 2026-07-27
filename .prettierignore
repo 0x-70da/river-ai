@@ -2,3 +2,6 @@ node_modules
 dist
 coverage
 .turbo
+README.md
+pnpm-lock.yaml
+packages/ui/src/components/ui
