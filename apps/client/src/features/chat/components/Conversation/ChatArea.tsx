@@ -8,13 +8,10 @@ import { ChatWelcome } from "./ChatWelcome";
 
 interface ChatAreaProps {
   chat?: ChatDetails | undefined;
-
   isChatLoading: boolean;
-
   isChatError: boolean;
-
+  onRetry: () => void;
   isSendingMessage: boolean;
-
   sendMessageMutation: (content: string) => void;
 }
 
@@ -22,6 +19,7 @@ export function ChatArea({
   chat,
   isChatLoading,
   isChatError,
+  onRetry,
   isSendingMessage,
   sendMessageMutation,
 }: ChatAreaProps) {
@@ -30,7 +28,7 @@ export function ChatArea({
   }
 
   if (isChatError || !chat) {
-    return <ChatError />;
+    return <ChatError onRetry={onRetry} />;
   }
 
   return (

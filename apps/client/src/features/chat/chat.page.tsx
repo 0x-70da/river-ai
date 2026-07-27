@@ -6,7 +6,7 @@ import { ChatArea } from "./components/Conversation/ChatArea";
 export function ChatPage() {
   const { chatId } = useParams();
 
-  const { chat, isChatLoading, isChatError } = useChat(chatId);
+  const { chat, isChatLoading, isChatError, refetchChat } = useChat(chatId);
 
   const { sendMessageMutation, isSendingMessage } = useMessage(chatId || "");
 
@@ -19,6 +19,7 @@ export function ChatPage() {
       chat={chat}
       isChatLoading={isChatLoading}
       isChatError={isChatError}
+      onRetry={refetchChat}
       isSendingMessage={isSendingMessage}
       sendMessageMutation={sendMessageMutation}
     />
