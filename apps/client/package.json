@@ -14,7 +14,6 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@river/types": "workspace:*",
     "@river/ui": "workspace:*",
     "@tanstack/react-query": "^5.101.4",
     "@types/react-syntax-highlighter": "^15.5.13",
@@ -28,6 +27,7 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
+    "@river/types": "workspace:*",
     "@river/config": "workspace:*",
     "@tailwindcss/vite": "^4.3.3",
     "@testing-library/jest-dom": "^7.0.0",
