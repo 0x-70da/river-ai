@@ -1,3 +1,4 @@
-export * from "./types/api";
-export * from "./types/chat";
-export * from "./types/message";
+export * from "./types/api.js";
+export * from "./types/chat.js";
+export * from "./types/message.js";
+export * from "./types/model.js";

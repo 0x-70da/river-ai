@@ -3,6 +3,7 @@ import { Chat } from "../models/chat.model.js";
 import { Message } from "../models/message.model.js";
 import { sendMessage } from "../services/ai.service.js";
 import { error, success } from "../utils/response.js";
+import { SendMessageInput } from "@river/types";
 
 export async function getChat(req: Request, res: Response) {
   const { chatId } = req.params as { chatId: string };
@@ -27,13 +28,17 @@ export async function getChat(req: Request, res: Response) {
 
 export async function createMessage(req: Request, res: Response) {
   const { chatId } = req.params as { chatId: string };
-  const { content } = req.body as { content: string };
+  const { content, modelId } = req.body as SendMessageInput;
 
   if (!content?.trim()) {
     return error(res, "Message content is required", 400);
   }
 
-  const assistantMessage = await sendMessage(chatId, content);
+  if (!modelId?.trim()) {
+    return error(res, "modelId is required", 400);
+  }
+
+  const assistantMessage = await sendMessage(chatId, content, modelId);
 
   return success(res, assistantMessage, 201);
 }

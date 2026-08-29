@@ -1,10 +1,11 @@
-import { ai } from "../config/ai.js";
+import { generateTitle, generateWithFallback } from "@river/ai";
+
+import type { ModelFallback } from "@river/types";
+
 import { Chat } from "../models/chat.model.js";
 import { Message } from "../models/message.model.js";
 
-const MODEL = "llama-3.3-70b-versatile";
-
-export async function sendMessage(chatId: string, content: string) {
+export async function sendMessage(chatId: string, content: string, modelId: string) {
   // ---------------------------------
   // 1) Check chat exists
   // ---------------------------------
@@ -16,17 +17,7 @@ export async function sendMessage(chatId: string, content: string) {
   }
 
   // ---------------------------------
-  // 2) Save user message
-  // ---------------------------------
-
-  await Message.create({
-    chatId,
-    role: "user",
-    content,
-  });
-
-  // ---------------------------------
-  // 3) Load history
+  // 2) Load history
   // ---------------------------------
 
   const history = await Message.find({
@@ -38,64 +29,82 @@ export async function sendMessage(chatId: string, content: string) {
     .lean();
 
   // ---------------------------------
-  // 4) Convert Mongo -> LLM Messages
+  // 3) Build prompt
   // ---------------------------------
 
-  const messages = history.map((message) => ({
-    role: message.role,
-    content: message.content,
-  }));
+  const prompt = [
+    ...history.map((message) => `${message.role}: ${message.content}`),
+    `user: ${content}`,
+  ].join("\n");
 
   // ---------------------------------
-  // 5) Call Groq
+  // 4) Generate assistant response
   // ---------------------------------
 
-  const completion = await ai.chat.completions.create({
-    model: MODEL,
-    messages,
-    temperature: 0.7,
+  const result = await generateWithFallback({
+    modelId,
+    prompt,
   });
 
-  const assistantContent = completion.choices[0]?.message?.content ?? "";
+  const assistantContent = result.text.trim();
 
   // ---------------------------------
-  // 6) Save assistant message
+  // 5) Save messages ONLY after success
   // ---------------------------------
+
+  const userMessage = await Message.create({
+    chatId,
+    role: "user",
+    content,
+  });
 
   const assistantMessage = await Message.create({
     chatId,
     role: "assistant",
     content: assistantContent,
-    model: MODEL,
+    model: result.model.id,
   });
 
   // ---------------------------------
-  // 7) Generate title
+  // 6) Generate title
   // ---------------------------------
 
+  let title: string | null = null;
+
   if (chat.title === "New Chat") {
-    const titleCompletion = await ai.chat.completions.create({
-      model: MODEL,
-      messages: [
-        {
-          role: "system",
-          content: "Generate a short chat title (maximum 5 words). Return only the title.",
-        },
-        {
-          role: "user",
-          content,
-        },
-      ],
-      temperature: 0.2,
-    });
+    try {
+      title = await generateTitle({
+        content,
+        modelId: result.model.id,
+      });
 
-    const title = titleCompletion.choices[0]?.message?.content?.trim();
-
-    if (title) {
-      chat.title = title;
-      await chat.save();
+      if (title) {
+        chat.title = title;
+        await chat.save();
+      }
+    } catch (error) {
+      console.error("Failed to generate chat title:", error);
     }
   }
 
-  return assistantMessage;
+  // ---------------------------------
+  // 7) Build fallback information
+  // ---------------------------------
+
+  const fallback: ModelFallback | null = result.didFallback
+    ? {
+        didFallback: true,
+        requestedModel: result.requestedModel,
+        model: result.model,
+        fallbackReason: result.fallbackReason,
+      }
+    : null;
+
+  return {
+    userMessage,
+    message: assistantMessage,
+    model: result.model,
+    fallback,
+    title,
+  };
 }

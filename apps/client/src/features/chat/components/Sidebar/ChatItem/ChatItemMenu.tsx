@@ -11,16 +11,23 @@ import { DeleteChatDialog } from "../../Dialogs/DeleteChatDialog";
 import { RenameChatDialog } from "../../Dialogs/RenameChatDialog";
 import { useState } from "react";
 
-export function ChatItemMenu() {
+export function ChatItemMenu({ chatId, chatTitle }: { chatId: string; chatTitle: string }) {
   const [isRenamingChatTitle, setIsRenamingChatTitle] = useState(false);
   const [isDeletingChat, setIsDeletingChat] = useState(false);
 
   return (
     <>
-      <RenameChatDialog isOpen={isRenamingChatTitle} onOpenChange={setIsRenamingChatTitle} />
-      <DeleteChatDialog isOpen={isDeletingChat} onOpenChange={setIsDeletingChat} />
+      <RenameChatDialog
+        isOpen={isRenamingChatTitle}
+        onOpenChange={setIsRenamingChatTitle}
+        chatId={chatId}
+        initialTitle={chatTitle}
+      />
+      <DeleteChatDialog isOpen={isDeletingChat} onOpenChange={setIsDeletingChat} chatId={chatId} />
       <DropdownMenu>
-        <DropdownMenuTrigger render={<Button variant="ghost" />}>
+        <DropdownMenuTrigger
+          render={<Button type="button" variant="ghost" size="icon" className="size-6" />}
+        >
           <MoreHorizontal className="size-4" />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="bg-zinc-100 rounded-2xl shadow-md">

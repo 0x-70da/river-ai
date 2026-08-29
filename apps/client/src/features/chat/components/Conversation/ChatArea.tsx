@@ -12,7 +12,7 @@ interface ChatAreaProps {
   isChatError: boolean;
   onRetry: () => void;
   isSendingMessage: boolean;
-  sendMessageMutation: (content: string) => void;
+  sendMessageMutation: (payload: { content: string; modelId: string }) => void;
 }
 
 export function ChatArea({

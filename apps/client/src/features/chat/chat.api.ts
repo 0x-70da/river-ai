@@ -1,6 +1,13 @@
 import { api } from "@/utils/api";
 
-import type { ApiResponse, Chat, ChatDetails, Message } from "@river/types";
+import type {
+  ApiResponse,
+  Chat,
+  ChatDetails,
+  Message,
+  ModelFallback,
+  ModelInfo,
+} from "@river/types";
 
 export async function getChats() {
   const response = await api.get<ApiResponse<Chat[]>>("/chats");
@@ -32,9 +39,18 @@ export async function createChat() {
   return response.data.data;
 }
 
-export async function sendMessage(chatId: string, content: string) {
-  const response = await api.post<ApiResponse<Message>>(`/chats/${chatId}/messages`, {
+interface SendMessageResponse {
+  userMessage: Message;
+  message: Message;
+  model: ModelInfo;
+  fallback: ModelFallback | null;
+  title: string | null;
+}
+
+export async function sendMessage(chatId: string, content: string, modelId: string) {
+  const response = await api.post<ApiResponse<SendMessageResponse>>(`/chats/${chatId}/messages`, {
     content,
+    modelId,
   });
 
   if (!response.data.success) {

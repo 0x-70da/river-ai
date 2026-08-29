@@ -7,6 +7,10 @@
     "types": ["node"],
 
     "moduleResolution": "nodenext",
-    "module": "NodeNext"
+    "module": "NodeNext",
+
+    "declaration": true,
+    "declarationMap": true,
+    "composite": true
   }
 }

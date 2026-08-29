@@ -6,3 +6,4 @@ export * from "./components/ui/input";
 export * from "./components/ui/alert-dialog";
 export * from "./components/ui/label";
 export * from "./components/ui/skeleton";
+export * from "./components/ui/select";

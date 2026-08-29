@@ -9,17 +9,17 @@ import {
   AlertDialogTitle,
 } from "@river/ui";
 import { useChat } from "../../hooks/useChat";
-import { useParams } from "react-router";
 
 export function DeleteChatDialog({
   isOpen,
   onOpenChange,
+  chatId,
 }: {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
+  chatId: string;
 }) {
-  const { chatId } = useParams<{ chatId: string }>();
-  const { deleteChatMutation, isDeletingChat } = useChat(chatId);
+  const { deleteChatMutation, isDeletingChat } = useChat();
 
   return (
     <AlertDialog open={isOpen} onOpenChange={onOpenChange}>
@@ -37,7 +37,10 @@ export function DeleteChatDialog({
             variant="destructive"
             size="sm"
             disabled={isDeletingChat}
-            onClick={() => deleteChatMutation(chatId!)}
+            onClick={() => {
+              if (!chatId) return;
+              deleteChatMutation(chatId!);
+            }}
           >
             Delete
           </AlertDialogAction>
