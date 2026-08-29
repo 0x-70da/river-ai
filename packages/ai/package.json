@@ -11,21 +11,27 @@
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./src/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
   "author": "0x70da",
   "license": "ISC",
   "packageManager": "pnpm@10.30.3",
   "devDependencies": {
-    "@river/config": "workspace:*"
+    "@river/config": "workspace:*",
+    "@river/types": "workspace:*"
   },
   "dependencies": {
-    "@river/types": "workspace:*",
+    "@ai-sdk/deepseek": "^3.0.27",
     "@ai-sdk/google": "^4.0.41",
     "@ai-sdk/groq": "^4.0.27",
+    "@ai-sdk/provider": "^4.0.8",
     "ai": "^7.0.59"
   }
 }
