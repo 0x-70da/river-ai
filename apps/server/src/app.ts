@@ -3,7 +3,7 @@ import cors from "cors";
 import router from "./routes.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
 
-const app = express();
+const app: express.Application = express();
 
 app.use(
   cors({

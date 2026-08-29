@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { getModels } from "@/controllers/model.controller.js";
 
-const router = Router();
+const router: Router = Router();
 
 router.get("/", getModels);
 

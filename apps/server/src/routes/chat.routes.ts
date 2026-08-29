@@ -8,7 +8,7 @@ import {
 import { validateObjectId } from "../middlewares/validateObjectId.middleware.js";
 import { createMessage, getChat } from "../controllers/message.controller.js";
 
-const router = Router();
+const router: Router = Router();
 
 router.post("/", createChat);
 router.get("/", getChats);
