@@ -9,10 +9,12 @@ import { queryClient } from "./query-client";
 import { router } from "./router";
 
 import "./index.css";
+import { Toaster } from "sonner";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
+      <Toaster position="top-center" />
       <RouterProvider router={router} />
     </QueryClientProvider>
   </React.StrictMode>,
