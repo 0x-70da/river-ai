@@ -1,23 +1,26 @@
 import { useState } from "react";
 import { useAutoResizeTextarea } from "@/hooks/useAutoResizeTextarea";
+import { useModels } from "@/features/models/useModels";
+import { ModelSelector } from "@/features/models/components/ModelSelector";
 
 interface PromptInputProps {
   isSendingMessage: boolean;
-
-  sendMessageMutation: (content: string) => void;
+  sendMessageMutation: (payload: { content: string; modelId: string }) => void;
 }
 
 export function PromptInput({ isSendingMessage, sendMessageMutation }: PromptInputProps) {
   const [value, setValue] = useState("");
   const textareaRef = useAutoResizeTextarea(value);
 
+  const { models = [], isLoadingModels } = useModels();
+
+  const [modelId, setModelId] = useState(models[0]?.id || "");
+
   function handleSubmit() {
     const message = value.trim();
+    if (!message || !modelId) return;
 
-    if (!message) return;
-
-    sendMessageMutation(message);
-
+    sendMessageMutation({ content: message, modelId });
     setValue("");
   }
 
@@ -37,6 +40,13 @@ export function PromptInput({ isSendingMessage, sendMessageMutation }: PromptInp
               handleSubmit();
             }
           }}
+        />
+
+        <ModelSelector
+          models={models}
+          modelId={modelId}
+          onChange={setModelId}
+          disabled={isLoadingModels || isSendingMessage}
         />
 
         <button

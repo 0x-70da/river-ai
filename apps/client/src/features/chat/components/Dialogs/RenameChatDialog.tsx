@@ -11,22 +11,24 @@ import {
   Input,
 } from "@river/ui";
 import { useChat } from "../../hooks/useChat";
-import { useParams } from "react-router";
 
 export function RenameChatDialog({
   isOpen,
   onOpenChange,
+  chatId,
+  initialTitle,
 }: {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
+  chatId: string;
+  initialTitle: string;
 }) {
-  const { chatId } = useParams<{ chatId: string }>();
-  const { chat, updateChatTitleMutation, isUpdatingChatTitle } = useChat(chatId);
-  const [value, setValue] = useState(chat?.title || "");
+  const { updateChatTitleMutation, isUpdatingChatTitle } = useChat();
+  const [value, setValue] = useState(initialTitle);
 
   function handleSubmit() {
     const trimmed = value.trim();
-    if (!trimmed) return;
+    if (!trimmed || !chatId) return;
 
     updateChatTitleMutation({ chatId: chatId!, title: trimmed });
     onOpenChange(false);
